@@ -1,0 +1,42 @@
+spring:
+  kafka:
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      bootstrap-server: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-server: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  datasource:
+    password: safari
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql:///ntspbms618db
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+  data:
+    redis:
+      port: '6379'
+      host: localhost
+  cache:
+    type: redis
+app:
+  topic:
+    name: school-topic
+server:
+  port: '4041'
+
+school:
+  mgmt:
+    message:
+        save-success: Record is saved with planid 
+        save-failure: Record is not saved 
+        delete-success: Record is deleted Successfully with id value
+        delete-failure: Record not found with id value
+        update-success: Record is Updated SuccessFully
+        update-failure: Record Not found for updateion
+        status-update-success: Record is Updated SuccessFully 
+        status-update-failure: Record is not found for updation  
