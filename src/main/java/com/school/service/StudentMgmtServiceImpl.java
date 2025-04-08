@@ -57,6 +57,7 @@ public class StudentMgmtServiceImpl implements IStudentMgmtService {
 	@CachePut(value = "students", key = "#student.id")
 	public String updateStudent(Student student) {
 		Optional<Student> opt = studentRepo.findById(student.getId());
+		log.info("updateStudent()");
 		if (opt.isPresent()) {
 			Student studentEntity = opt.get();
 			BeanUtils.copyProperties(student, studentEntity);
