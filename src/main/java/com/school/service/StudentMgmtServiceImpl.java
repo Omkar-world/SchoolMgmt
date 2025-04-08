@@ -18,7 +18,10 @@ import com.school.entity.Student;
 import com.school.prducer.Producer;
 import com.school.repository.IStudentRepsitory;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class StudentMgmtServiceImpl implements IStudentMgmtService {
 
 	@Autowired
@@ -27,6 +30,7 @@ public class StudentMgmtServiceImpl implements IStudentMgmtService {
 	private IStudentRepsitory studentRepo;
 
 	private Map<String, String> message;
+	
 	@Value("${app.topic.name}")
 	private String topic;
 
@@ -38,7 +42,9 @@ public class StudentMgmtServiceImpl implements IStudentMgmtService {
 	@Override
 	@CachePut(value = "students", key = "#student.id")
 	public String registerStudent(Student student) {
+		
 		Student studentEntity = studentRepo.save(student);
+		log.info("RegisterStudent()");
 		if (student.getId() > 0) {
 			producer.sendMessage(topic, student.toString());
 		}
