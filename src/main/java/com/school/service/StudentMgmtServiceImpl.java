@@ -85,7 +85,7 @@ public class StudentMgmtServiceImpl implements IStudentMgmtService {
 
 	@Override
 	@Cacheable(value = "students")
-	public List<Student> getAllStudent() {
+	public List<Student> getAllStudent(){
 		return studentRepo.findAll();
 	}
 
